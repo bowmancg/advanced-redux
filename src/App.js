@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchCartData())
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     if (isInitial) {
@@ -28,21 +28,19 @@ function App() {
     if (cart.changed) {
       dispatch(sendCartData(cart))
     }
-
-    dispatch(sendCartData(cart))
   }, [cart, dispatch])
 
   return (
     <Fragment>
       {notification && <Notification
-      status={notification.status}
-      title={notification.title}
-      message={notification.message}
+        status={notification.status}
+        title={notification.title}
+        message={notification.message}
       />}
-    <Layout>
-      {showCart && <Cart />}
-      <Products />
-    </Layout>
+      <Layout>
+        {showCart && <Cart />}
+        <Products />
+      </Layout>
     </Fragment>
   );
 }
